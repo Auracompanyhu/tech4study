@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Konferenciánk támogatói</title>
+    <style>
+        .sponsors-section {
+            text-align: center; /* Középre igazítás */
+        }
+        .table {
+            margin: 0 auto; /* Középre igazítás */
+            width: 80%; /* Szélesség beállítása */
+        }
+        .modal-body {
+            padding: 0; /* Padding eltávolítása */
+        }
+        .iframe-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 arány */
+            height: 0;
+            overflow: hidden;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Konferencia támogatóink</h1>
+    </div>
+
+    <div class="sponsors-section">
+        <h2>Támogatók</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Támogató</th>
+                    <th>Szint</th>
+                    <th>Videó</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Támogató 1</td>
+                    <td><img src="bronze-silver-gold-star-gradient.png" alt="Arany" class="level-icon" width="5%"></td>
+                    <td><button onclick="showModal('Ye0LYf0jI7E')" class="btn btn-primary">Lejátszás</button></td>
+                </tr>
+                <tr>
+                    <td>Támogató 2</td>
+                    <td><img src="silver.png" alt="Ezüst" class="level-icon" width="5%"></td>
+                    <td><button onclick="showModal('videoID2')" class="btn btn-primary">Lejátszás</button></td>
+                </tr>
+                <tr>
+                    <td>Támogató 3</td>
+                    <td><img src="bronz.png" alt="Bronz" class="level-icon" width="5%"></td>
+                    <td><button onclick="showModal('videoID3')" class="btn btn-primary">Lejátszás</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modális ablak -->
+    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="videoModalLabel">Videó lejátszás</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="iframe-container">
+                        <iframe id="video-iframe" src="" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showModal(videoId) {
+            $('#videoModal').modal('show'); // Modális ablak megjelenítése
+            const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`; // Beágyazott videó URL
+            $('#video-iframe').attr('src', videoUrl); // Iframe forrásának beállítása
+        }
+
+        $('#videoModal').on('hidden.bs.modal', function () {
+            $('#video-iframe').attr('src', ''); // Iframe forrásának törlése, amikor a modális ablak bezáródik
+        });
+    </script>
+</body>
+</html>
